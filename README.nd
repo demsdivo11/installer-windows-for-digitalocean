@@ -1,16 +1,18 @@
+Tentu, ini adalah **raw text** (teks mentah)-nya.
 
-```
-# Windows Auto Installer for DigitalOcean / VPS  
+Kamu bisa langsung klik tombol **Copy** di pojok kanan atas kotak di bawah ini, lalu **Paste** (Tempel) ke dalam file `README.md` kamu di GitHub atau text editor.
+
+```markdown
+# Windows Auto Installer for DigitalOcean / VPS 
 **by Dems**
 
-Installer otomatis untuk menjalankan **Windows di dalam Docker** menggunakan image  
-[`dockurr/windows`](https://github.com/dockur/windows).
+Installer otomatis untuk menjalankan **Windows di dalam Docker** menggunakan image [`dockurr/windows`](https://github.com/dockur/windows).
 
 Script ini dibuat supaya:
-- Tidak ribet
-- Tidak error CRLF
-- Tidak perlu install Docker manual
-- Cukup **1 perintah** untuk mulai
+- ✅ Tidak ribet
+- ✅ Tidak error CRLF
+- ✅ Tidak perlu install Docker manual
+- ✅ Cukup **1 perintah** untuk mulai
 
 ---
 
@@ -19,118 +21,111 @@ Script ini dibuat supaya:
 Jalankan **sebagai root** di VPS (Ubuntu / Debian):
 
 ```bash
-curl -fsSL https://github.com/demsdivo11/installer-windows-for-digitalocean/raw/refs/heads/main/installer.sh | sh
-````
+curl -fsSL [https://github.com/demsdivo11/installer-windows-for-digitalocean/raw/refs/heads/main/installer.sh](https://github.com/demsdivo11/installer-windows-for-digitalocean/raw/refs/heads/main/installer.sh) | sh
 
-Itu saja.
-Installer akan **langsung berjalan otomatis**.
+```
+
+Itu saja. Installer akan **langsung berjalan otomatis**.
 
 ---
 
 ## 🧠 Apa yang Dilakukan Installer?
 
-`installer.sh` (bootstrap):
+### 1. `installer.sh` (Bootstrap)
 
 * Download `windows.sh` dari GitHub
-* Memperbaiki line ending (CRLF → LF)
+* Memperbaiki line ending (CRLF → LF) agar script jalan di Linux
 * Memberi permission executable
 * Menjalankan `windows.sh`
 
-`windows.sh` (installer utama):
+### 2. `windows.sh` (Installer Utama)
 
-* Mengecek apakah Docker sudah terinstall
-* Jika **belum**, Docker akan **diinstall otomatis**
-* Proses install Docker ditampilkan dengan **loading / spinner**
-* Menampilkan menu pilihan Windows
-* Meminta input:
-
-  * Versi Windows
-  * RAM
-  * CPU core
-  * Storage
-  * Username
-  * Password
-* Generate `docker-compose.yml`
-* Menjalankan Windows container secara otomatis
+* **Cek Docker:** Jika belum ada, Docker diinstall otomatis (dengan loading spinner).
+* **Menu Pilihan:** Meminta input versi Windows, RAM, CPU, Storage, User & Pass.
+* **Generate Config:** Membuat file `docker-compose.yml` otomatis.
+* **Start:** Menjalankan container Windows.
 
 ---
 
 ## 🪟 Versi Windows yang Tersedia
 
-| No | Windows Version         |
-| -- | ----------------------- |
-| 1  | Windows 11 Pro          |
-| 2  | Windows 11 Enterprise   |
-| 3  | Windows 10 Pro          |
-| 4  | Windows 10 LTSC         |
-| 5  | Windows 10 Enterprise   |
-| 6  | Windows 8.1 Enterprise  |
-| 7  | Windows 7 Ultimate      |
-| 8  | Windows Vista Ultimate  |
-| 9  | Windows XP Professional |
-| 10 | Windows Server 2025     |
-| 11 | Windows Server 2022     |
-| 12 | Windows Server 2019     |
-| 13 | Windows Server 2016     |
+| No | Windows Version |
+| --- | --- |
+| 1 | Windows 11 Pro |
+| 2 | Windows 11 Enterprise |
+| 3 | Windows 10 Pro |
+| 4 | Windows 10 LTSC |
+| 5 | Windows 10 Enterprise |
+| 6 | Windows 8.1 Enterprise |
+| 7 | Windows 7 Ultimate |
+| 8 | Windows Vista Ultimate |
+| 9 | Windows XP Professional |
+| 10 | Windows Server 2025 |
+| 11 | Windows Server 2022 |
+| 12 | Windows Server 2019 |
+| 13 | Windows Server 2016 |
 
 ---
 
 ## ⚙️ Default Konfigurasi
 
-Jika kamu **langsung tekan ENTER**, maka akan dipakai default berikut:
+Jika kamu **langsung tekan ENTER** saat diminta input, maka akan menggunakan setting berikut:
 
-| Setting  | Default         |
-| -------- | --------------- |
-| RAM      | `4G`            |
-| CPU      | `2`             |
-| Disk     | `64G`           |
-| Username | `Administrator` |
-| Password | `DemsWindows26` |
+| Setting | Default Value |
+| --- | --- |
+| **RAM** | `4G` |
+| **CPU** | `2` Cores |
+| **Disk** | `64G` |
+| **Username** | `Administrator` |
+| **Password** | `DemsWindows26` |
 
 ---
 
-## 🌐 Akses Windows
+## 🌐 Cara Akses Windows
 
-Setelah installer selesai, buka browser di PC kamu:
+Setelah installer selesai, buka browser di PC/Laptop kamu:
 
 ```
 http://{IP-VPS-KAMU}:8006
+
 ```
 
-Untuk Remote Desktop (RDP):
+Atau gunakan **Remote Desktop (RDP)**:
 
-* Port: `3389`
-* Username & Password sesuai input installer
+* **Port:** `3389`
+* **User/Pass:** Sesuai input saat install
 
 ---
 
-## 📂 File yang Dibuat
+## 📂 Struktur File
 
-Setelah install:
+Setelah install, folder akan berisi:
 
-```
+```text
 .
-├── installer.sh
-├── windows.sh
-├── docker-compose.yml
-└── windows/        # storage VM
+├── installer.sh          # Script downloader
+├── windows.sh            # Script utama
+├── docker-compose.yml    # Config docker hasil generate
+└── windows/              # Folder penyimpanan data VM
+
 ```
 
 ---
 
 ## ⚠️ Catatan Penting
 
-* Jalankan script **sebagai root**
-* VPS harus mendukung **virtualization (KVM)**
-  Jika tidak, Windows tetap jalan tapi lebih lambat
-* Script ini **tidak mendistribusikan ISO Windows**
-* Image yang digunakan: `dockurr/windows` (open source)
+> [!IMPORTANT]
+> 1. **Run as Root:** Wajib dijalankan sebagai root.
+> 2. **Virtualization (KVM):** VPS harus support Nested Virtualization (KVM). Jika tidak, Windows tetap jalan tapi **sangat lambat**.
+> 3. **ISO:** Script ini tidak mendistribusikan ISO Windows bajakan, melainkan mendownload image resmi via script `dockurr`.
+> 
+> 
 
 ---
 
 ## 🧪 Tested On
 
-* Ubuntu 20.04 / 22.04
+* Ubuntu 20.04 / 22.04 / 24.04
 * Debian 10 / 11 / 12
 * DigitalOcean Droplet (Nested Virtualization enabled)
 
@@ -138,31 +133,27 @@ Setelah install:
 
 ## ⚖️ Disclaimer
 
-Windows adalah merek dagang milik Microsoft.
-Project ini **tidak berafiliasi** dengan Microsoft.
-
-Script ini hanya menyediakan **automation** untuk menjalankan Windows
-menggunakan software open-source.
+Windows adalah merek dagang milik Microsoft. Project ini **tidak berafiliasi** dengan Microsoft. Script ini hanya menyediakan **otomatisasi** untuk menjalankan Windows menggunakan software open-source.
 
 ---
 
 ## ⭐ Credits
 
-* Windows Docker Image:
-  [https://github.com/dockur/windows](https://github.com/dockur/windows)
-* Installer & Automation:
-  **Dems**
+* **Docker Image:** [dockur/windows](https://github.com/dockur/windows)
+* **Installer & Automation:** Dems
 
 ---
 
 ## 🆘 Support
 
-Kalau ada error:
+Jika ada error:
 
-* pastikan VPS support KVM
-* pastikan dijalankan sebagai root
-* cek output log installer
+1. Pastikan VPS support KVM (`lscpu | grep Virtualization`).
+2. Pastikan dijalankan sebagai root.
+3. Cek output log installer.
 
-Pull request & issue welcome.
+Pull request & issue welcome!
+
+```
 
 ```
