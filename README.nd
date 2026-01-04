@@ -1,13 +1,3 @@
-Siap. Ini **README.md LENGKAP & RAPI** untuk **KEDUA SCRIPT** (`installer.sh` dan `windows.sh`), sudah disusun biar:
-
-* user **tinggal copy–paste 1 baris**
-* jelas apa yang terjadi
-* tidak perlu paham Docker dulu
-* cocok buat GitHub publik
-
-Silakan **copy utuh** dan simpan sebagai **`README.md`** di repo kamu.
-
----
 
 ````markdown
 # Windows Auto Installer for DigitalOcean / VPS  
