@@ -1,0 +1,188 @@
+Siap. Ini **README.md LENGKAP & RAPI** untuk **KEDUA SCRIPT** (`installer.sh` dan `windows.sh`), sudah disusun biar:
+
+* user **tinggal copy–paste 1 baris**
+* jelas apa yang terjadi
+* tidak perlu paham Docker dulu
+* cocok buat GitHub publik
+
+Silakan **copy utuh** dan simpan sebagai **`README.md`** di repo kamu.
+
+---
+
+````markdown
+# Windows Auto Installer for DigitalOcean / VPS  
+**by Dems**
+
+Installer otomatis untuk menjalankan **Windows di dalam Docker** menggunakan image  
+[`dockurr/windows`](https://github.com/dockur/windows).
+
+Script ini dibuat supaya:
+- Tidak ribet
+- Tidak error CRLF
+- Tidak perlu install Docker manual
+- Cukup **1 perintah** untuk mulai
+
+---
+
+## 🚀 Quick Install (Recommended)
+
+Jalankan **sebagai root** di VPS (Ubuntu / Debian):
+
+```bash
+curl -fsSL https://github.com/demsdivo11/installer-windows-for-digitalocean/raw/refs/heads/main/installer.sh | sh
+````
+
+Itu saja.
+Installer akan **langsung berjalan otomatis**.
+
+---
+
+## 🧠 Apa yang Dilakukan Installer?
+
+`installer.sh` (bootstrap):
+
+* Download `windows.sh` dari GitHub
+* Memperbaiki line ending (CRLF → LF)
+* Memberi permission executable
+* Menjalankan `windows.sh`
+
+`windows.sh` (installer utama):
+
+* Mengecek apakah Docker sudah terinstall
+* Jika **belum**, Docker akan **diinstall otomatis**
+* Proses install Docker ditampilkan dengan **loading / spinner**
+* Menampilkan menu pilihan Windows
+* Meminta input:
+
+  * Versi Windows
+  * RAM
+  * CPU core
+  * Storage
+  * Username
+  * Password
+* Generate `docker-compose.yml`
+* Menjalankan Windows container secara otomatis
+
+---
+
+## 🪟 Versi Windows yang Tersedia
+
+| No | Windows Version         |
+| -- | ----------------------- |
+| 1  | Windows 11 Pro          |
+| 2  | Windows 11 Enterprise   |
+| 3  | Windows 10 Pro          |
+| 4  | Windows 10 LTSC         |
+| 5  | Windows 10 Enterprise   |
+| 6  | Windows 8.1 Enterprise  |
+| 7  | Windows 7 Ultimate      |
+| 8  | Windows Vista Ultimate  |
+| 9  | Windows XP Professional |
+| 10 | Windows Server 2025     |
+| 11 | Windows Server 2022     |
+| 12 | Windows Server 2019     |
+| 13 | Windows Server 2016     |
+
+---
+
+## ⚙️ Default Konfigurasi
+
+Jika kamu **langsung tekan ENTER**, maka akan dipakai default berikut:
+
+| Setting  | Default         |
+| -------- | --------------- |
+| RAM      | `4G`            |
+| CPU      | `2`             |
+| Disk     | `64G`           |
+| Username | `Administrator` |
+| Password | `DemsWindows26` |
+
+---
+
+## 🌐 Akses Windows
+
+Setelah installer selesai, buka browser di PC kamu:
+
+```
+http://{IP-VPS-KAMU}:8006
+```
+
+Untuk Remote Desktop (RDP):
+
+* Port: `3389`
+* Username & Password sesuai input installer
+
+---
+
+## 📂 File yang Dibuat
+
+Setelah install:
+
+```
+.
+├── installer.sh
+├── windows.sh
+├── docker-compose.yml
+└── windows/        # storage VM
+```
+
+---
+
+## ⚠️ Catatan Penting
+
+* Jalankan script **sebagai root**
+* VPS harus mendukung **virtualization (KVM)**
+  Jika tidak, Windows tetap jalan tapi lebih lambat
+* Script ini **tidak mendistribusikan ISO Windows**
+* Image yang digunakan: `dockurr/windows` (open source)
+
+---
+
+## 🧪 Tested On
+
+* Ubuntu 20.04 / 22.04
+* Debian 10 / 11 / 12
+* DigitalOcean Droplet (Nested Virtualization enabled)
+
+---
+
+## ⚖️ Disclaimer
+
+Windows adalah merek dagang milik Microsoft.
+Project ini **tidak berafiliasi** dengan Microsoft.
+
+Script ini hanya menyediakan **automation** untuk menjalankan Windows
+menggunakan software open-source.
+
+---
+
+## ⭐ Credits
+
+* Windows Docker Image:
+  [https://github.com/dockur/windows](https://github.com/dockur/windows)
+* Installer & Automation:
+  **Dems**
+
+---
+
+## 🆘 Support
+
+Kalau ada error:
+
+* pastikan VPS support KVM
+* pastikan dijalankan sebagai root
+* cek output log installer
+
+Pull request & issue welcome.
+
+```
+
+---
+
+Kalau kamu mau, aku bisa:
+- bikinin **badge GitHub**
+- bikin **README versi bahasa Inggris**
+- tambahin **FAQ error umum (KVM / Docker / DigitalOcean)**
+
+Tapi yang ini sudah **publish-ready** dan tidak malu-maluin.
+```
