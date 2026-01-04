@@ -1,7 +1,12 @@
+Maaf. Ini raw text-nya.
+
+**PENTING:** Pastikan baris **paling atas** di file kamu langsung tulisan `# Windows...` (Hapus tanda ````markdown` jika ikut ter-copy).
+
+```markdown
 # Windows Auto Installer for DigitalOcean / VPS 
 **by Dems**
 
-Installer otomatis untuk menjalankan **Windows di dalam Docker** menggunakan image [`dockurr/windows`](https://github.com/dockur/windows).
+Installer otomatis untuk menjalankan **Windows di dalam Docker** menggunakan image [`dockurr/windows`]([https://github.com/dockur/windows](https://github.com/dockur/windows)).
 
 Script ini dibuat supaya:
 - ✅ Tidak ribet
@@ -16,7 +21,7 @@ Script ini dibuat supaya:
 Jalankan **sebagai root** di VPS (Ubuntu / Debian):
 
 ```bash
-curl -fsSL [https://github.com/demsdivo11/installer-windows-for-digitalocean/raw/refs/heads/main/installer.sh](https://github.com/demsdivo11/installer-windows-for-digitalocean/raw/refs/heads/main/installer.sh) | sh
+curl -fsSL https://github.com/demsdivo11/installer-windows-for-digitalocean/raw/refs/heads/main/installer.sh | sh
 
 ```
 
@@ -148,3 +153,7 @@ Jika ada error:
 3. Cek output log installer.
 
 Pull request & issue welcome!
+
+```
+
+```
