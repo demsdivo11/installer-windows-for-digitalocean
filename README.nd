@@ -1,8 +1,4 @@
-Tentu, ini adalah **raw text** (teks mentah)-nya.
 
-Kamu bisa langsung klik tombol **Copy** di pojok kanan atas kotak di bawah ini, lalu **Paste** (Tempel) ke dalam file `README.md` kamu di GitHub atau text editor.
-
-```markdown
 # Windows Auto Installer for DigitalOcean / VPS 
 **by Dems**
 
@@ -153,7 +149,5 @@ Jika ada error:
 3. Cek output log installer.
 
 Pull request & issue welcome!
-
-```
 
 ```
